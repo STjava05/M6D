@@ -1,0 +1,36 @@
+
+GET http://localhost:5051/api/user?page=1&limit=1
+
+#####
+
+POST http://localhost:5051/api/user HTTP/1.1
+Content-Type: application/json
+
+{
+   "category": "Art&Design",
+   "title": "Venezia",
+   "email": "zeus@hotmail.it",
+   "password": "12345678",
+   "cover": "https://media.istockphoto.com/id/1203871251/it/foto/barche-della-polizia.webp?s=170667a&w=0&k=20&c=AzpQBtCl6vQWZjqZf90mzEa8PFaLa-B55O1z-nrml50=",
+   "readTime": {"value": 1},
+   "unit": "minute",
+    "author": {
+         "name": "grotta",
+         "avatar": "https://images.unsplash.com/photo-1688109509876-7398191132c9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80"
+       },
+    "content": "dieu de la terre"
+   }
+
+#####
+GET http://localhost:5051/api/user/64b10ba1b8893fec50a38da7
+
+#####
+
+PATCH  http://localhost:5051/api/user/64b10ba1b8893fec50a38da7 HTTP/1.1
+
+Content-Type: application/json
+{"content": "le roi de la gungle",}
+
+#####
+
+DELETE http://localhost:5051/api/user/64b28c33159fb49bf3e7ac5b
