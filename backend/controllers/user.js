@@ -1,8 +1,10 @@
 const userModel = require('../models/dataModel');
 const bcrypt = require('bcrypt');
 
-const createUser = (req, res, next) => {
-    console.log(req.body);
+
+
+const createUser = (req, res) => {
+    console.log(req);
     bcrypt.hash(req.body.password, 10)
         .then(hash => {
             const user = new userModel({
@@ -18,9 +20,11 @@ const createUser = (req, res, next) => {
 
 }
 
+
+
 const getAllUser = (req, res, next) => {
     const page = parseInt(req.query.page) || 1; // Ottieni il numero di pagina dalla query (se non specificato, assume 1)
-    const itemPerPage = parseInt(req.query.limit) || 5; // Ottieni il numero di elementi per pagina dalla query (se non specificato, assume 5)
+    const itemPerPage = parseInt(req.query.limit) || 10; // Ottieni il numero di elementi per pagina dalla query (se non specificato, assume 5)
    
     const totalUsers = userModel.countDocuments({}); // Calcola il numero totale di utenti
     const totalPages = Math.ceil(totalUsers / itemPerPage); // Calcola il numero totale di pagine
