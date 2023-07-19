@@ -7,11 +7,13 @@ const userCtrl = require('./controllers/user');
 
 
 
-app.post('/api/user', userCtrl.createUser);
+
+
 app.get('/api/user',  userCtrl.getAllUser);
 app.get('/api/user/:id',  userCtrl.getOneUser);
 app.patch('/api/user/:id',  userCtrl.modifyUser);
 app.delete('/api/user/:id',  userCtrl.deleteUser);
+
 
 
 

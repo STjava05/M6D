@@ -23,13 +23,10 @@ const userSchema = mongoose.Schema({
     readTime: {
        value: {
         type: Number,
-       
-        
     },
     unit: {
         type: String,
-       
-    }
+      }
     },
     author: {
         name: {

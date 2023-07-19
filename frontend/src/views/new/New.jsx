@@ -8,7 +8,7 @@ import "./styles.css";
 
 const NewBlogPost = () => {
   const textRef = useRef("");
-  const imageRef = useRef("");
+  const imageRef = useRef(null);
   const titleRef = useRef("");
   const categoryRef = useRef("Social");
   const authorRef = useRef("");
@@ -23,6 +23,7 @@ const NewBlogPost = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    
 
     const postPayload = {
       title: titleRef.current.value,
@@ -34,7 +35,7 @@ const NewBlogPost = () => {
         avatar: "https://images.unsplash.com/photo-1675747158920-1b00990de2be?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
       },
       content: textRef.current,
-      cover: imageRef.current.value,
+      cover: imageRef.current.files[0],
     };
 
     dispatch(postPost(postPayload));
@@ -47,7 +48,7 @@ const NewBlogPost = () => {
         <Form.Group controlId="formImage">
           <Form.Label>Cover</Form.Label>
           <Form.Control
-            type="text"
+            type="file"
             placeholder="Enter image URL"
             ref={imageRef}
           />

@@ -5,10 +5,12 @@ import BlogAuthor from "../blog-author/BlogAuthor";
 import "./styles.css";
 const BlogItem = (props) => {
   const { title, cover, author, _id } = props;
+  console.log(author);
   return (
     <Link to={`/blog/${_id}`} className="blog-link">
       <Card className="blog-card">
-        <Card.Img variant="top" src={cover} className="blog-cover" />
+      <Card.Img variant="top" src={`http://localhost:5051/images/${cover}`} className="blog-cover" />
+
         <Card.Body>
           <Card.Title>{title}</Card.Title>
         </Card.Body>

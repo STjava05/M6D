@@ -5,12 +5,13 @@ const jwt = require('jsonwebtoken');
 
 
 const createUser = (req, res) => {
-    console.log(req);
+    const cover = req.file ? req.file.filename : undefined;
     bcrypt.hash(req.body.password, 10)
         .then(hash => {
             const user = new userModel({
                 ...req.body,
                 password: hash,
+                cover: cover
 
             });
             user.save()
