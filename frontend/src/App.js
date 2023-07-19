@@ -5,11 +5,14 @@ import Home from "./views/home/Home";
 import Blog from "./views/blog/Blog";
 import NewBlogPost from "./views/new/New";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Login from "./components/login";
 
 function App() {
   return (
     <Router>
+      
       <NavBar />
+      <Login />
       <Routes>
         <Route path="/" exact element={<Home />} />
         <Route path="/blog/:id" element={<Blog />} />

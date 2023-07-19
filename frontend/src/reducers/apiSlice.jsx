@@ -3,8 +3,14 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const fetchApi = createAsyncThunk(
     "api/fetchApi",
-    async () => {
-        const response = await fetch("http://localhost:5051/api/user");
+    async (page) => {
+        const token = localStorage.getItem("token");
+        const response = await fetch("http://localhost:5051/api/user?page="+ page,{
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+
+        });
         const data = await response.json();
         console.log(data);
         return data;
@@ -39,6 +45,7 @@ export const postPost = createAsyncThunk(
 
 const initialState = {
     data: [],
+    totalPages: 0,
     loading: false,
     error: false,
 }
@@ -53,6 +60,10 @@ const apiSlice = createSlice({
             state.data = action.payload;
 
         },
+        postLogin: (state, action) => {
+            state.data = action.payload;
+        }
+
     },
     extraReducers: (builder) => {
         builder.addCase(fetchApi.pending, (state, action) => {
@@ -60,7 +71,9 @@ const apiSlice = createSlice({
         }
         );
         builder.addCase(fetchApi.fulfilled, (state, action) => {
-            state.data = action.payload;
+            state.data = action.payload.user;
+            console.log(action.payload);
+            state.totalPages = action.payload.totalPages;
             state.loading = false;
         }
         );
@@ -74,7 +87,7 @@ const apiSlice = createSlice({
 
 );
 
-export const { setAuthor } = apiSlice.actions;
+export const { setAuthor,postLogin } = apiSlice.actions;
 export default apiSlice.reducer;
 
 
