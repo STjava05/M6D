@@ -29,11 +29,11 @@ const { login } = require('./middleware/login');
 const  {auth}  = require('./middleware/auth');
 
 app.use('/login', login);
-app.post('/api/user', multer, userCtrl.createUser);
+app.post('/api/user/register', multer, userCtrl.createUser);
 app.use('/images', express.static('images'));
 
 
-app.use('/',auth, userRouter);
+app.use('/auth',auth, userRouter);
 
 
 

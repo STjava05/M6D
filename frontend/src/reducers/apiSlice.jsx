@@ -7,7 +7,7 @@ export const fetchApi = createAsyncThunk(
         const token = getState().blog.token;
         console.log(token);
         try {
-            const response = await fetch(`http://localhost:5051/api/user?page=${page}`,
+            const response = await fetch(`http://localhost:5051/auth/api/user?page=${page}`,
                 {
                     method: "GET",
                     headers: {
@@ -42,7 +42,7 @@ export const postPost = createAsyncThunk(
         formData.append("content", post.content);
         formData.append("imageRef", post.cover);
   
-        const response = await fetch("http://localhost:5051/api/user", {
+        const response = await fetch("http://localhost:5051/api/user/register", {
           method: "POST",
           headers: {
             Authorization: `Bearer ${token.token}`
